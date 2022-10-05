@@ -6,5 +6,4 @@
   "collectCoverage":true,
   "coverageDirectory":"tests_coverage",
   "modulePathIgnorePatterns": ["dist"]
-
 }
