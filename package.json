@@ -1,6 +1,6 @@
 {
   "name": "trino-ts",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Typescript lib that enable projects to interact with the SQL Query engine Trino",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm test",
     "version": "git add -A src",
-    "presto": "npm run build && node ./dist/src/trino/trino.js"
+    "trino": "npm run build && node ./dist/src/trino/trino.js"
   },
   "repository": {
     "type": "git",
