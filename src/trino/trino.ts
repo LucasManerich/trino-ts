@@ -22,7 +22,7 @@ export class Trino {
     this._querystatus = value
   }
 
-  private async request(): Promise<AxiosInstance> {
+  private request(): AxiosInstance {
     try {
       let basicAuthParam: string
       if (this.params.isBasicAuth) {
@@ -59,7 +59,7 @@ export class Trino {
 
   private async sendToTrino(url: string, method: AxiosRequestConfig['method']): Promise<TrinoResponse> {
     try {
-      const request = await this.request()
+      const request = this.request()
       let resultTrino: TrinoResponse
       const isFirstRequest: boolean = (method === TRINO_HTTP_METHODS.POST)
       resultTrino = isFirstRequest
@@ -76,7 +76,11 @@ export class Trino {
     try {
       this.params.updatesNotification(resultTrino)
       if (resultTrino.stats.state !== TrinoStatus.FINISHED && resultTrino.nextUri) {
-        this.insertInTheQueue(resultTrino.nextUri)
+        let nextUri = resultTrino.nextUri
+        if(!this.params.isHttps) {
+          nextUri = nextUri.replace('https://', 'http://')
+        }
+        this.insertInTheQueue(nextUri)
       } else if (resultTrino.stats.state === TrinoStatus.FINISHED) {
         this._querystatus = TrinoStatus.FINISHED
         return resultTrino
