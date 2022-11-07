@@ -1,24 +1,23 @@
 # Trino TS
 
-trino-ts is a lib for JavaScript/TypeScript that allows the interaction and execution of queries in Trino (formerly known as Presto).
+trino-ts é uma biblioteca desenvolvida para JavaScript/TypeScript que permite a interação e execução de queries na ferramenta de consulta em Big Data Trino (anteriormente conhecida como Presto).
 
 
-## Installation
+## Instalação
 
-Add the dependency to your project using your favorite dependency manager.
-
+Para começar a usar a biblioteca, basta adicionar a dependência ao seu projeto utilizando seu gerenciador de dependências favorito.
 ```bash
 npm install --save trino-ts
 ```
 
-or 
+ou 
 
 ```bash
 yarn add trino-ts
 ```
 
 
-## Example
+## Exemplo de Implementação
 ```typescript
 import { Trino, TrinoQueryParams, TrinoResponse } from  'trino-ts';
 

@@ -1,6 +1,6 @@
 {
   "name": "trino-ts",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Typescript lib that enable projects to interact with the SQL Query engine Trino",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,6 +20,8 @@
     "url": "git+https://github.com/LucasManerich/trino-ts"
   },
   "keywords": [
+    "trino",
+    "bigdata",
     "presto",
     "typescript"
   ],
