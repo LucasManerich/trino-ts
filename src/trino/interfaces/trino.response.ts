@@ -1,4 +1,23 @@
-export interface Stats {
+export type QueryStage = {
+  stageId: string
+  state: string
+  done: boolean
+  nodes: number
+  totalSplits: number
+  queuedSplits: number
+  runningSplits: number
+  completedSplits: number
+  cpuTimeMillis: number
+  wallTimeMillis: number
+  processedRows: number
+  processedBytes: number
+  physicalInputBytes: number
+  failedTasks: number
+  coordinatorOnly: boolean
+  subStages: QueryStage[]
+}
+
+export interface QueryStats {
   state: string;
   queued: boolean;
   scheduled: boolean;
@@ -13,20 +32,36 @@ export interface Stats {
   elapsedTimeMillis: number;
   processedRows: number;
   processedBytes: number;
+  physicalInputBytes: number;
   peakMemoryBytes: number;
-  peakTotalMemoryBytes: number;
-  peakTaskTotalMemoryBytes: number;
   spilledBytes: number;
+  rootStage: QueryStage;
+  progressPercentage: number;
 }
 
-export interface TrinoResponse<T = any, S = any> {
+export type QueryFailureInfo = {
+  type: string
+  message: string
+  suppressed: string[]
+  stack: string[]
+}
+
+export type QueryError = {
+  message: string;
+  errorCode: number;
+  errorName: string;
+  errorType: string;
+  failureInfo: QueryFailureInfo;
+}
+
+export interface TrinoResponse<T = any> {
   id: string;
-  infoUri: string;
-  nextUri: string;
-  stats?: Stats;
-  data?: T[];
-  warnings?: S[];
-  columns?: Column[];
+  infoUri: string
+  nextUri: string
+  stats?: QueryStats
+  data?: T[]
+  warnings?: string[]
+  error?: QueryError
 }
 
 export interface Column {

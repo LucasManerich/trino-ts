@@ -13,15 +13,6 @@ export class Trino {
     private readonly httpAgentOptions?: http.AgentOptions
   ) { }
 
-  private _querystatus: TrinoStatus
-
-  public get querystatus(): TrinoStatus {
-    return this._querystatus
-  }
-  public set querystatus(value: TrinoStatus) {
-    this._querystatus = value
-  }
-
   private request(): AxiosInstance {
     try {
       let basicAuthParam: string
@@ -82,7 +73,6 @@ export class Trino {
         }
         this.insertInTheQueue(nextUri)
       } else if (resultTrino.stats.state === TrinoStatus.FINISHED) {
-        this._querystatus = TrinoStatus.FINISHED
         return resultTrino
       }
     } catch (error) {
