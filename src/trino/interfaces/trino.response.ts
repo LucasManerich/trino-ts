@@ -60,6 +60,7 @@ export interface TrinoResponse<T = any> {
   nextUri: string
   stats?: QueryStats
   data?: T[]
+  columns?: Column[]
   warnings?: string[]
   error?: QueryError
 }
